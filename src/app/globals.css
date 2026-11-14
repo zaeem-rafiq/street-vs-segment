@@ -1,28 +1,32 @@
 @import "tailwindcss";
 
+/* Design tokens. The market is drawn in ink (a hollow ring); the AI panel and the gap in
+   one signal orange. Both pairs pass WCAG AA for text on their card surface. */
 :root {
-  --bg: #f6f5f1;
+  --bg: #f7f7f5;
   --card: #ffffff;
-  --ink: #16181d;
-  --muted: #5b616e;
-  --line: #e2e0d8;
-  --chip: #ecebe4;
-  --accent: #1d4ed8;
-  --up: #047857;
-  --down: #b42318;
+  --ink: #0e1116;
+  --muted: #545b67;
+  --line: #e3e2dd;
+  --track: #d9d8d2;
+  --panel: #c2410c;
+  --panel-soft: #f7dccb;
+  --chip: #fbede4;
+  --live: #15803d;
 }
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --bg: #0f1115;
-    --card: #171a21;
-    --ink: #f2f3f5;
-    --muted: #a3a9b6;
-    --line: #2a2f3a;
-    --chip: #262b35;
-    --accent: #7aa2ff;
-    --up: #34d399;
-    --down: #f87171;
+    --bg: #0b0d10;
+    --card: #13161b;
+    --ink: #eef0f3;
+    --muted: #a0a7b3;
+    --line: #242933;
+    --track: #343a46;
+    --panel: #fb8a4c;
+    --panel-soft: #5a2d16;
+    --chip: #3a2214;
+    --live: #4ade80;
   }
 }
 
@@ -32,10 +36,11 @@
   --color-ink: var(--ink);
   --color-muted: var(--muted);
   --color-line: var(--line);
+  --color-track: var(--track);
+  --color-panel: var(--panel);
+  --color-panel-soft: var(--panel-soft);
   --color-chip: var(--chip);
-  --color-accent: var(--accent);
-  --color-up: var(--up);
-  --color-down: var(--down);
+  --color-live: var(--live);
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
 }
@@ -43,4 +48,10 @@
 body {
   background: var(--bg);
   color: var(--ink);
+  font-feature-settings: "ss01", "cv11";
+}
+
+h1,
+h2 {
+  text-wrap: balance;
 }
