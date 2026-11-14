@@ -28,6 +28,18 @@ function tickerStrike(ticker: string): number | null {
 // estimates above that strike (dot) on the same 0–100% track.
 export function StrikeLadder({ ticker, estimate, rungs }: { ticker: string; estimate: Estimate; rungs: LadderRung[] }) {
   const own = tickerStrike(ticker);
+  // Rows where the market and the panel are both pinned near 0% or both near 100% say nothing,
+  // so they are hidden (never this page's own strike) and counted below the ladder.
+  const rows = rungs.map((rung) => ({
+    rung,
+    market: Math.round(rung.yesPercent),
+    panel: Math.round(panelShareAbove(estimate.values, rung.strike)),
+    isOwn: own !== null && Math.abs(rung.strike - own) < 1e-9,
+  }));
+  const pinned = (row: (typeof rows)[number]) =>
+    !row.isOwn && ((row.market >= 98 && row.panel >= 98) || (row.market <= 2 && row.panel <= 2));
+  const shown = rows.filter((row) => !pinned(row));
+  const hidden = rows.length - shown.length;
   return (
     <section className="rounded-xl border border-line bg-card p-5 sm:p-6" data-testid="strike-ladder">
       <div className="flex flex-col gap-1 sm:flex-row sm:items-baseline sm:justify-between">
@@ -49,10 +61,7 @@ export function StrikeLadder({ ticker, estimate, rungs }: { ticker: string; esti
         </p>
       ) : (
         <ol className="mt-5 divide-y divide-line">
-          {rungs.map((rung) => {
-            const market = Math.round(rung.yesPercent);
-            const panel = Math.round(panelShareAbove(estimate.values, rung.strike));
-            const isOwn = own !== null && Math.abs(rung.strike - own) < 1e-9;
+          {shown.map(({ rung, market, panel, isOwn }) => {
             // The panel dot sits over the market ring unless the two nearly coincide; then the
             // ring is drawn hollow on top so both stay visible.
             const close = Math.abs(panel - market) <= 2;
@@ -72,7 +81,7 @@ export function StrikeLadder({ ticker, estimate, rungs }: { ticker: string; esti
                 }`}
               >
                 <span className="tabular-nums text-ink">
-                  <span className="text-muted">Above </span>
+                  <span className="text-muted max-sm:sr-only">Above </span>
                   <span className="font-semibold">{formatValue(rung.strike, estimate.unit)}</span>
                 </span>
                 <span className="relative h-5" aria-label={`Market ${market}% Yes, panel ${panel}% above`} role="img">
@@ -99,7 +108,11 @@ export function StrikeLadder({ ticker, estimate, rungs }: { ticker: string; esti
         </ol>
       )}
       <p className="mt-3 text-xs text-muted">
-        Right column: Kalshi price · panel share. Highlighted row: this page&apos;s market. Flashpoint survey{" "}
+        Right column: Kalshi price · panel share. Highlighted row: this page&apos;s market.
+        {hidden > 0
+          ? ` ${hidden} ${hidden === 1 ? "strike" : "strikes"} where both are within 2 points of 0% or 100% ${hidden === 1 ? "is" : "are"} not shown.`
+          : ""}{" "}
+        Flashpoint survey{" "}
         <span className="break-all">{estimate.surveyId}</span>.
       </p>
     </section>

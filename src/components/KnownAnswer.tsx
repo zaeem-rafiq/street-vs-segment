@@ -23,12 +23,18 @@ function SourceLink({ check }: { check: Check }) {
 
 const fact = (check: Check) => check.fact.trim().replace(/\.$/, "");
 
-// One line under a home-page card.
+// One line under a home-page card. The fact itself is a full sentence, so it stays on the
+// market page; the card says how far the panel landed from the known answer.
 export function KnownAnswerLine({ check }: { check: Check }) {
+  const miss = missPoints(check);
   return (
     <p className="text-sm text-muted" data-testid="known-answer">
-      <span className="font-semibold text-ink">Known-answer check:</span> On a known {check.correctAnswer} (
-      {fact(check)}), {Math.round(check.panelYesShare)}% of this panel said Yes. Source: <SourceLink check={check} />
+      <span className="font-semibold text-ink">Known-answer check:</span> On a question whose answer is known
+      to be {check.correctAnswer}, {Math.round(check.panelYesShare)}% of this panel said Yes,{" "}
+      <span className="font-semibold text-ink">
+        {miss} {miss === 1 ? "point" : "points"} from the truth
+      </span>
+      . Source: <SourceLink check={check} />
     </p>
   );
 }

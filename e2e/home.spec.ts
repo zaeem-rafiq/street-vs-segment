@@ -63,7 +63,7 @@ test("shows the known-answer check on the card and in full on the market page", 
   const card = page.locator("article").filter({ hasText: "Fixture renters" });
   const line = card.getByTestId("known-answer");
   await expect(line).toContainText("Known-answer check");
-  await expect(line).toContainText("18% of this panel said Yes");
+  await expect(line).toContainText("18% of this panel said Yes, 18 points from the truth");
   await expect(line.getByRole("link", { name: "Fixture source" })).toHaveAttribute("href", "https://example.com/fixture");
   await card.getByTestId("gap-card").click();
   await expect(page).toHaveURL(/\/m\/KXNYCRENTSY-26-T4$/);
