@@ -1,0 +1,25 @@
+{
+  "ticker": "KXNYCRENTSY-26-T4",
+  "breakdowns": [
+    {
+      "dimension": "age",
+      "groups": [
+        {
+          "label": "Under 35",
+          "n": 32,
+          "yesShare": 81
+        },
+        {
+          "label": "35 to 54",
+          "n": 41,
+          "yesShare": 51
+        },
+        {
+          "label": "55 and over",
+          "n": 27,
+          "yesShare": 37
+        }
+      ]
+    }
+  ]
+}

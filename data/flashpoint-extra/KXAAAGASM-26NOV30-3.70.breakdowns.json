@@ -1,0 +1,50 @@
+{
+  "ticker": "KXAAAGASM-26NOV30-3.70",
+  "breakdowns": [
+    {
+      "dimension": "age",
+      "groups": [
+        {
+          "label": "Under 35",
+          "n": 28,
+          "yesShare": 57
+        },
+        {
+          "label": "35 to 54",
+          "n": 41,
+          "yesShare": 66
+        },
+        {
+          "label": "55 and over",
+          "n": 31,
+          "yesShare": 52
+        }
+      ]
+    },
+    {
+      "dimension": "region",
+      "groups": [
+        {
+          "label": "Northeast",
+          "n": 19,
+          "yesShare": 37
+        },
+        {
+          "label": "Midwest",
+          "n": 19,
+          "yesShare": 63
+        },
+        {
+          "label": "South",
+          "n": 42,
+          "yesShare": 64
+        },
+        {
+          "label": "West",
+          "n": 20,
+          "yesShare": 65
+        }
+      ]
+    }
+  ]
+}

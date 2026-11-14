@@ -1,0 +1,101 @@
+respondent_index,q1_answer,age,city,state
+1,Yes,38,Seattle,WA
+2,No,46,Charlotte,NC
+3,Yes,62,Tampa,FL
+4,Yes,41,Houston,TX
+5,No,31,San Diego,CA
+6,No,29,Los Angeles,CA
+7,Yes,27,Denver,CO
+8,No,54,Philadelphia,PA
+9,Yes,79,Cleveland,OH
+10,No,76,Cleveland,OH
+11,No,31,Atlanta,GA
+12,Yes,71,Phoenix,AZ
+13,Yes,82,Sacramento,CA
+14,Yes,44,Dallas,TX
+15,Yes,58,Atlanta,GA
+16,Yes,35,Chicago,IL
+17,Yes,35,Chicago,IL
+18,Yes,58,Detroit,MI
+19,Yes,24,Chicago,IL
+20,Yes,34,Houston,TX
+21,Yes,56,Newark,NJ
+22,No,48,Nashville,TN
+23,Yes,73,Columbus,OH
+24,No,54,Pittsburgh,PA
+25,Yes,51,Philadelphia,PA
+26,No,42,Houston,TX
+27,Yes,61,Boston,MA
+28,Yes,44,Raleigh,NC
+29,Yes,58,Raleigh,NC
+30,No,35,New York,NY
+31,Yes,73,Columbus,OH
+32,No,44,Dallas,TX
+33,Yes,38,New York,NY
+34,Yes,67,Tampa,FL
+35,Yes,41,Houston,TX
+36,No,37,Minneapolis,MN
+37,Yes,31,Miami,FL
+38,Yes,52,Phoenix,AZ
+39,Yes,27,San Francisco,CA
+40,Yes,40,San Antonio,TX
+41,No,26,Charlotte,NC
+42,No,46,Atlanta,GA
+43,Yes,78,Detroit,MI
+44,Yes,62,Detroit,MI
+45,Yes,73,Tampa,FL
+46,Yes,22,Sacramento,CA
+47,No,43,Minneapolis,MN
+48,Yes,22,Philadelphia,PA
+49,Yes,39,San Antonio,TX
+50,Yes,31,San Diego,CA
+51,No,29,Los Angeles,CA
+52,Yes,64,Philadelphia,PA
+53,No,52,Philadelphia,PA
+54,Yes,39,Dallas,TX
+55,Yes,24,Chicago,IL
+56,No,41,Portland,OR
+57,Yes,48,San Diego,CA
+58,No,67,Phoenix,AZ
+59,No,69,Baltimore,MD
+60,No,38,Dallas,TX
+61,Yes,35,New York,NY
+62,Yes,61,Miami,FL
+63,No,67,Phoenix,AZ
+64,Yes,29,Los Angeles,CA
+65,No,45,Miami,FL
+66,Yes,27,Los Angeles,CA
+67,No,42,Houston,TX
+68,No,39,Detroit,MI
+69,No,48,Newark,NJ
+70,No,73,Pittsburgh,PA
+71,Yes,28,New York,NY
+72,Yes,69,Orlando,FL
+73,No,50,Miami,FL
+74,Yes,22,Columbus,OH
+75,Yes,53,Atlanta,GA
+76,Yes,22,Columbus,OH
+77,Yes,27,San Diego,CA
+78,No,46,Charlotte,NC
+79,Yes,41,Seattle,WA
+80,No,57,Minneapolis,MN
+81,Yes,29,Los Angeles,CA
+82,No,50,Portland,OR
+83,Yes,69,Pittsburgh,PA
+84,No,46,New York,NY
+85,Yes,58,Raleigh,NC
+86,Yes,33,Portland,OR
+87,Yes,22,Austin,TX
+88,Yes,39,Dallas,TX
+89,No,56,San Antonio,TX
+90,Yes,31,Chicago,IL
+91,Yes,24,Atlanta,GA
+92,No,48,Nashville,TN
+93,Yes,33,Denver,CO
+94,Yes,33,Denver,CO
+95,No,76,Charlotte,NC
+96,No,24,Austin,TX
+97,Yes,43,Portland,OR
+98,Yes,34,Denver,CO
+99,No,67,Phoenix,AZ
+100,Yes,44,Boston,MA
