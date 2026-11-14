@@ -144,3 +144,11 @@ The one clear pattern is NYC rent by age: young renters say Yes four times in fi
 - The control panels are new panels, not the same personas as the main runs. A panel that is wrong on a known fact is evidence about this kind of panel, not about those specific 100 people.
 - The control questions name a source and a month so the answer is checkable, but the personas do not have the data in front of them. They answer from general knowledge, so the check measures how current that knowledge is.
 - Facts were checked once, by me, against the sources above. Nothing about them was reviewed by anyone else.
+
+## Added at 2:10 PM CT: estimates for grocery and rent
+
+The `estimate` fields for grocery and NYC rent come from a second Flashpoint session (Lane D), copied from `data/flashpoint-extra/`. Its notes are in `data/flashpoint-extra/NOTES.md`. The gas estimate comes from this runbook's own session.
+
+- These are new panels of 100 personas, not the panels behind the Yes shares. Gas medians differ between two independent panels: $4.07 (this session) and $3.95 (Lane D).
+- Asked for a number, the panels lean higher than when asked Yes or No: 99% of grocery estimates are above 2.5%, against a 63% Yes share.
+- Answers clump on a few values (52 of 100 grocery answers are 2.8 or 3.2; 18 rent answers are exactly 4.0), so the spread is narrower than 100 independent views would give.

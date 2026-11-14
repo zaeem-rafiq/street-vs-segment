@@ -8,10 +8,10 @@ Kalshi lists 945 economics market series (its public API, November 14, 2026), ea
 
 | | |
 |---|---|
-| ![Home page with three gap cards](docs/screenshots/1-home.jpg) | ![Gas market detail: who was asked and what we asked](docs/screenshots/2-gas-detail.jpg) |
-| **Home.** Each card: Kalshi's Yes price, the panel's Yes share, and the gap. | **Detail.** The Census profile, the three questions and the answer splits. |
-| ![Quotes from the gas panel](docs/screenshots/3-gas-quotes.jpg) | ![The home page on a phone](docs/screenshots/4-phone.jpg) |
-| **In their words.** Five verbatim persona answers, with the full disclosure. | **Phone.** The same cards at 375 px. |
+| ![Home page: each market as a 0 to 100% scale](docs/screenshots/redesign/home-1440.png) | ![Gas market page](docs/screenshots/redesign/detail-1440.png) |
+| **Home.** Kalshi's price (ring) and the AI panel's Yes share (dot) on one scale, the gap in points, and each panel's known-answer check. | **Market page.** Who was asked, the questions, quotes, who drives the gap, and the strike ladder. |
+| ![Home page on a phone](docs/screenshots/redesign/home-375.png) | ![Home page, dark theme](docs/screenshots/redesign/home-1440-dark.png) |
+| **Phone.** The same rows at 375 px. | **Dark theme.** |
 
 Built at Hack the Unreachable (Flashpoint.AI), November 14, 2026, for the Investment Alpha track: "Find the gap between what's priced in and what key segments privately believe".
 
@@ -24,7 +24,7 @@ Built at Hack the Unreachable (Flashpoint.AI), November 14, 2026, for the Invest
 
 ## Limits, as scope choices
 
-The segment answers come from 100 Flashpoint synthetic personas per market, not live respondents. Only their gender mix is matched to Census data, Flashpoint returned no fit score, and the five quotes per market are verbatim answers chosen from 100. Flashpoint can recruit real people (Prolific, Dynata, Cint) with one call; this build leaves that out for budget. Thin Kalshi books can move a price, so each card shows the last trade time and the bid-ask spread.
+The segment answers come from 100 Flashpoint synthetic personas per market, not live respondents. We test each panel on a question with a known answer, and it misses by 41 to 76 points, so read the gaps as leads to check, not trades. Only their gender mix is matched to Census data, Flashpoint returned no fit score, and the five quotes per market are verbatim answers chosen from 100. Flashpoint can recruit real people (Prolific, Dynata, Cint) with one call; this build leaves that out for budget. Thin Kalshi books can move a price, so each card shows the last trade time and the bid-ask spread.
 
 ## Run it
 

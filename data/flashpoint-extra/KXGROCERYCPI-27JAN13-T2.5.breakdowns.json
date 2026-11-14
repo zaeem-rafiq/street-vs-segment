@@ -1,0 +1,50 @@
+{
+  "ticker": "KXGROCERYCPI-27JAN13-T2.5",
+  "breakdowns": [
+    {
+      "dimension": "age",
+      "groups": [
+        {
+          "label": "Under 35",
+          "n": 29,
+          "yesShare": 79
+        },
+        {
+          "label": "35 to 54",
+          "n": 42,
+          "yesShare": 48
+        },
+        {
+          "label": "55 and over",
+          "n": 29,
+          "yesShare": 69
+        }
+      ]
+    },
+    {
+      "dimension": "region",
+      "groups": [
+        {
+          "label": "Northeast",
+          "n": 17,
+          "yesShare": 59
+        },
+        {
+          "label": "Midwest",
+          "n": 18,
+          "yesShare": 72
+        },
+        {
+          "label": "South",
+          "n": 38,
+          "yesShare": 55
+        },
+        {
+          "label": "West",
+          "n": 27,
+          "yesShare": 70
+        }
+      ]
+    }
+  ]
+}
