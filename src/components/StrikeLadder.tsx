@@ -76,12 +76,12 @@ export function StrikeLadder({ ticker, estimate, rungs }: { ticker: string; esti
             return (
               <li
                 key={rung.strike}
-                className={`grid grid-cols-[4.5rem_minmax(0,1fr)_5.5rem] items-center gap-3 py-2 text-sm sm:grid-cols-[6rem_minmax(0,1fr)_8rem] sm:gap-5 ${
+                className={`grid grid-cols-[5.75rem_minmax(0,1fr)_5.5rem] items-center gap-3 py-2 text-sm sm:grid-cols-[6rem_minmax(0,1fr)_8rem] sm:gap-5 ${
                   isOwn ? "-mx-2 rounded-md bg-chip px-2" : ""
                 }`}
               >
                 <span className="tabular-nums text-ink">
-                  <span className="text-muted max-sm:sr-only">Above </span>
+                  <span className="text-muted">Above </span>
                   <span className="font-semibold">{formatValue(rung.strike, estimate.unit)}</span>
                 </span>
                 <span className="relative h-5" aria-label={`Market ${market}% Yes, panel ${panel}% above`} role="img">
