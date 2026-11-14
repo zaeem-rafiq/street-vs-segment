@@ -4,7 +4,7 @@ Read the numbers off the live page just before presenting. Kalshi prices move. T
 
 | Time | Say | Screen (real product?) |
 |---|---|---|
-| 0:00 | "Markets tell you what's priced in. They don't tell you what the people living the outcome expect." | Home page, gap cards already showing (real) |
+| 0:00 | "Kalshi lists 945 economics markets. Every price comes only from the people who trade it, not the people who live it." | Home page, gap cards already showing (real) |
 | 0:05 | "Kalshi gives gas above $3.70 by November 30 a 34% chance. A Flashpoint panel of 100 US drivers says 59%. That's a 25-point gap, on a market that traded over 8,000 contracts today." | Gas card, big green +25 (real) |
 | 0:30 | "So we built Street vs. Segment. Pick a Kalshi economics market. Claude works out who lives that outcome and writes three questions. Flashpoint builds the survey, runs a 100-persona panel, and returns their answers. We put that next to the live price." | Click into the gas card: who was asked, the questions (real) |
 | 1:00 | "And here's why, in their words." Read one quote. | Answers panel with quotes (real) |
