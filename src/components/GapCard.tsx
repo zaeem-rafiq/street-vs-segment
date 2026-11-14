@@ -55,7 +55,7 @@ export function GapCard({ run, price, linked = true }: Props) {
 
   if (!linked) {
     return (
-      <section className="grid grid-cols-1 gap-8 lg:grid-cols-[minmax(0,1fr)_auto] lg:items-end lg:gap-16">
+      <section className="grid grid-cols-1 gap-8 lg:grid-cols-[minmax(0,1fr)_minmax(14rem,22rem)] lg:items-end lg:gap-16">
         <div className="min-w-0">
           <SegmentLabel run={run} />
           <h1 className="mt-3 text-3xl font-semibold leading-[1.1] tracking-tight text-ink sm:text-5xl">

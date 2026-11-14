@@ -32,7 +32,7 @@ export default async function Home() {
         </h1>
         <p className="mt-5 max-w-2xl text-lg leading-relaxed text-muted">
           Kalshi lists 945 economics market series, each priced only by the people who trade it. Each
-          row puts a live Kalshi price next to a Flashpoint.AI synthetic panel of 100 personas modeled
+          row puts {allLive ? "a live" : "a"} Kalshi price next to a Flashpoint.AI synthetic panel of 100 personas modeled
           on the people closest to the outcome, and shows the gap in percentage points.
         </p>
       </section>
@@ -47,7 +47,9 @@ export default async function Home() {
             {average !== null && (
               <p className="flex flex-wrap items-baseline gap-x-3 gap-y-1 text-ink" data-testid="average-gap">
                 <span className="text-sm text-muted">Across {runs.length} markets, the panel and the market differ by an average of</span>
-                <strong className="text-4xl font-bold tracking-tight tabular-nums">{average} points</strong>
+                <strong className="text-4xl font-bold tracking-tight tabular-nums">
+                  {average} {average === 1 ? "point" : "points"}
+                </strong>
               </p>
             )}
             <ul className="flex flex-wrap items-center gap-x-5 gap-y-2 text-sm font-medium text-ink">

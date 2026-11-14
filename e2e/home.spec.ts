@@ -24,6 +24,10 @@ test("opens a market to show who was asked, the questions and their quotes", asy
   await page.goto("/");
   await page.getByTestId("gap-card").filter({ hasText: "Fixture renters" }).click();
   await expect(page).toHaveURL(/\/m\/KXNYCRENTSY-26-T4$/);
+  await expect(page.getByTestId("market-percent")).toHaveText(/^\d{1,3}%$/);
+  await expect(page.getByTestId("segment-percent")).toHaveText(/^\d{1,3}%$/);
+  await expect(page.getByTestId("gap-value")).toHaveText(/^([+−]\d{1,3}|0)\s*pts?$/);
+  await expect(page.getByTestId("price-source")).toBeVisible();
   await expect(page.getByTestId("panel-profile")).toContainText("Fixture stat A");
   await expect(page.getByTestId("panel-questions")).toContainText("Fixture yes/no question");
   expect(await page.getByTestId("quote").count()).toBeGreaterThanOrEqual(3);
@@ -38,6 +42,8 @@ test("shows the saved price when Kalshi cannot be reached", async ({ page }) => 
   for (const source of await sources.all()) {
     await expect(source).toContainText("Saved price");
   }
+  await page.goto("http://localhost:3101/m/KXNYCRENTSY-26-T4");
+  await expect(page.getByTestId("price-source")).toContainText("Saved price");
 });
 
 test("fits a 375-pixel phone screen without sideways scrolling", async ({ page }) => {
@@ -46,6 +52,10 @@ test("fits a 375-pixel phone screen without sideways scrolling", async ({ page }
   await expect(page.getByTestId("gap-card").first()).toBeVisible();
   const overflow = await page.evaluate(() => document.documentElement.scrollWidth - window.innerWidth);
   expect(overflow).toBeLessThanOrEqual(0);
+  await page.goto("/m/KXNYCRENTSY-26-T4");
+  await expect(page.getByTestId("gap-value")).toBeVisible();
+  const detailOverflow = await page.evaluate(() => document.documentElement.scrollWidth - window.innerWidth);
+  expect(detailOverflow).toBeLessThanOrEqual(0);
 });
 
 test("shows the known-answer check on the card and in full on the market page", async ({ page }) => {
