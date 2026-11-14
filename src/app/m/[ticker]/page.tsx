@@ -1,10 +1,15 @@
 import Link from "next/link";
 import { notFound } from "next/navigation";
+import { Breakdowns } from "@/components/Breakdowns";
 import { Disclosure } from "@/components/Disclosure";
 import { GapCard } from "@/components/GapCard";
+import { KnownAnswerPanel } from "@/components/KnownAnswer";
 import { SiteHeader } from "@/components/SiteHeader";
+import { StrikeLadder } from "@/components/StrikeLadder";
 import { formatTime } from "@/lib/format";
+import { roundPercent } from "@/lib/gap";
 import { fetchMarketPrice } from "@/lib/kalshi";
+import { fetchStrikeLadder } from "@/lib/ladder";
 import { loadRun } from "@/lib/runs";
 
 export const dynamic = "force-dynamic";
@@ -19,7 +24,10 @@ export default async function MarketPage({ params }: PageProps<"/m/[ticker]">) {
   const { ticker } = await params;
   const run = await loadRun(decodeURIComponent(ticker));
   if (!run) notFound();
-  const price = await fetchMarketPrice(run.ticker, run.marketAtRun);
+  const [price, rungs] = await Promise.all([
+    fetchMarketPrice(run.ticker, run.marketAtRun),
+    run.estimate ? fetchStrikeLadder(run.ticker) : Promise.resolve([]),
+  ]);
 
   return (
     <main className="mx-auto w-full max-w-6xl px-4 pb-16 pt-5 sm:px-6 lg:px-8">
@@ -37,7 +45,20 @@ export default async function MarketPage({ params }: PageProps<"/m/[ticker]">) {
         <GapCard run={run} price={price} linked={false} />
       </div>
 
-      <div className="mt-10 grid grid-cols-1 gap-4 lg:grid-cols-3">
+      {run.estimate && (
+        <div className="mt-10">
+          <StrikeLadder ticker={run.ticker} estimate={run.estimate} rungs={rungs} />
+        </div>
+      )}
+
+      {(run.breakdowns || run.knownAnswerCheck) && (
+        <div className={`mt-4 grid grid-cols-1 gap-4 ${run.breakdowns && run.knownAnswerCheck ? "lg:grid-cols-2" : ""}`}>
+          {run.breakdowns && <Breakdowns breakdowns={run.breakdowns} market={roundPercent(price.yesPercent)} />}
+          {run.knownAnswerCheck && <KnownAnswerPanel check={run.knownAnswerCheck} />}
+        </div>
+      )}
+
+      <div className={`${run.estimate || run.breakdowns || run.knownAnswerCheck ? "mt-4" : "mt-10"} grid grid-cols-1 gap-4 lg:grid-cols-3`}>
         <section className={panelClass} data-testid="panel-profile">
           <h2 className={headingClass}>Who was asked</h2>
           <p className="mt-2 text-sm leading-relaxed text-muted">

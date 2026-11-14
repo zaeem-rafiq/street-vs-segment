@@ -32,6 +32,7 @@ test("opens a market to show who was asked, the questions and their quotes", asy
 
 test("shows the saved price when Kalshi cannot be reached", async ({ page }) => {
   await page.goto("http://localhost:3101/");
+  await expect(page.getByTestId("price-status")).toHaveText(/^Some prices are saved, not live/);
   const sources = page.getByTestId("price-source");
   await expect(sources).toHaveCount(fixtureCount);
   for (const source of await sources.all()) {
@@ -45,4 +46,37 @@ test("fits a 375-pixel phone screen without sideways scrolling", async ({ page }
   await expect(page.getByTestId("gap-card").first()).toBeVisible();
   const overflow = await page.evaluate(() => document.documentElement.scrollWidth - window.innerWidth);
   expect(overflow).toBeLessThanOrEqual(0);
+});
+
+test("shows the known-answer check on the card and in full on the market page", async ({ page }) => {
+  await page.goto("/");
+  const card = page.locator("article").filter({ hasText: "Fixture renters" });
+  const line = card.getByTestId("known-answer");
+  await expect(line).toContainText("Known-answer check");
+  await expect(line).toContainText("18% of this panel said Yes");
+  await expect(line.getByRole("link", { name: "Fixture source" })).toHaveAttribute("href", "https://example.com/fixture");
+  await card.getByTestId("gap-card").click();
+  await expect(page).toHaveURL(/\/m\/KXNYCRENTSY-26-T4$/);
+  const panel = page.getByTestId("known-answer");
+  await expect(panel).toContainText("Fixture known-answer question");
+  await expect(panel).toContainText("Fixture fact");
+  await expect(panel).toContainText("missed by 18 points");
+});
+
+test("shows who drives the gap with each group's Yes share", async ({ page }) => {
+  await page.goto("/m/KXNYCRENTSY-26-T4");
+  const section = page.getByTestId("breakdowns");
+  await expect(section).toContainText("Who drives the gap");
+  await expect(section).toContainText("By age");
+  await expect(section).toContainText("Under 35");
+  await expect(section).toContainText("40%");
+  await expect(section).toContainText("By region");
+});
+
+test("shows the strike ladder section, and says why when Kalshi's strikes cannot be loaded", async ({ page }) => {
+  await page.goto("http://localhost:3101/m/KXNYCRENTSY-26-T4");
+  const ladder = page.getByTestId("strike-ladder");
+  await expect(ladder).toContainText("Fixture estimate question");
+  await expect(ladder).toContainText("Panel median estimate");
+  await expect(ladder).toContainText("could not be loaded");
 });

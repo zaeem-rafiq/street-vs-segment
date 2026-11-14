@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { Dumbbell } from "@/components/Dumbbell";
+import { KnownAnswerLine } from "@/components/KnownAnswer";
 import { describeGap, formatGap, gapPoints, roundPercent } from "@/lib/gap";
 import { formatTime } from "@/lib/format";
 import type { MarketPrice } from "@/lib/kalshi";
@@ -77,33 +78,45 @@ export function GapCard({ run, price, linked = true }: Props) {
     );
   }
 
+  // The known-answer line carries its own source link, so it sits outside the card's link
+  // (a link inside a link is invalid HTML) but inside the same bordered card.
   return (
-    <Link
-      href={`/m/${encodeURIComponent(run.ticker)}`}
-      className="group block rounded-xl border border-line bg-card p-5 transition-colors hover:border-ink focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ink sm:p-6 lg:px-8"
-      data-testid="gap-card"
-    >
-      <div className="grid grid-cols-1 gap-5 lg:grid-cols-[minmax(0,20rem)_minmax(0,1fr)_14rem] lg:items-center lg:gap-10">
-        <div className="min-w-0">
-          <p className="truncate font-mono text-xs text-muted">{run.ticker}</p>
-          <p className="mt-1.5 text-lg font-semibold leading-snug text-ink">{run.question}</p>
-          <p className="mt-2">
-            <SegmentLabel run={run} />
-          </p>
+    <article className="rounded-xl border border-line bg-card transition-colors has-[a[data-testid=gap-card]:hover]:border-ink">
+      <Link
+        href={`/m/${encodeURIComponent(run.ticker)}`}
+        className="group block rounded-xl p-5 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ink sm:p-6 lg:px-8"
+        data-testid="gap-card"
+      >
+        <div className="grid grid-cols-1 gap-5 lg:grid-cols-[minmax(0,20rem)_minmax(0,1fr)_14rem] lg:items-center lg:gap-10">
+          <div className="min-w-0">
+            <p className="truncate font-mono text-xs text-muted">{run.ticker}</p>
+            <p className="mt-1.5 text-lg font-semibold leading-snug text-ink">{run.question}</p>
+            <p className="mt-2">
+              <SegmentLabel run={run} />
+            </p>
+            <p className="mt-1 text-xs text-muted">
+              {run.panelSize} personas · {run.segment.place}
+            </p>
+          </div>
+          <div className="order-last min-w-0 lg:order-none">
+            <Dumbbell market={market} panel={segment} />
+            <p className="mt-1 text-xs text-muted" data-testid="price-source">
+              {priceNote(price)}
+            </p>
+          </div>
+          <div className="lg:text-right">
+            <Gap gap={gap} label={run.segment.label} />
+          </div>
         </div>
-        <div className="order-last min-w-0 lg:order-none">
-          <Dumbbell market={market} panel={segment} />
-          <p className="mt-1 text-xs text-muted" data-testid="price-source">
-            {priceNote(price)}
-          </p>
+        <p className="mt-3 text-sm font-medium text-ink underline-offset-4 group-hover:underline lg:text-right">
+          Who was asked and what they said →
+        </p>
+      </Link>
+      {run.knownAnswerCheck && (
+        <div className="border-t border-line px-5 py-3 sm:px-6 lg:px-8">
+          <KnownAnswerLine check={run.knownAnswerCheck} />
         </div>
-        <div className="lg:text-right">
-          <Gap gap={gap} label={run.segment.label} />
-        </div>
-      </div>
-      <p className="mt-3 text-sm font-medium text-ink underline-offset-4 group-hover:underline lg:text-right">
-        Who was asked and what they said →
-      </p>
-    </Link>
+      )}
+    </article>
   );
 }

@@ -1,6 +1,6 @@
 import { Disclosure } from "@/components/Disclosure";
 import { GapCard } from "@/components/GapCard";
-import { SiteHeader } from "@/components/SiteHeader";
+import { PriceStatus, SiteHeader } from "@/components/SiteHeader";
 import { averageAbsoluteGap, gapPoints } from "@/lib/gap";
 import { fetchMarketPrice } from "@/lib/kalshi";
 import { loadRuns } from "@/lib/runs";
@@ -20,11 +20,11 @@ export default async function Home() {
   const runs = await loadRuns();
   const prices = await Promise.all(runs.map((run) => fetchMarketPrice(run.ticker, run.marketAtRun)));
   const average = averageAbsoluteGap(runs.map((run, i) => gapPoints(run.yesShare, prices[i].yesPercent)));
-  const allLive = prices.length > 0 && prices.every((price) => price.source === "live");
+  const allLive = prices.every((price) => price.source === "live");
 
   return (
     <main className="mx-auto w-full max-w-6xl px-4 pb-16 pt-5 sm:px-6 lg:px-8">
-      <SiteHeader live={allLive} />
+      <SiteHeader>{prices.length > 0 && <PriceStatus live={allLive} />}</SiteHeader>
 
       <section className="pt-10 sm:pt-16">
         <h1 className="max-w-4xl text-4xl font-semibold leading-[1.05] tracking-tight text-ink sm:text-6xl">
@@ -46,7 +46,7 @@ export default async function Home() {
           <div className="mt-10 flex flex-col gap-4 border-y border-line py-5 sm:flex-row sm:items-center sm:justify-between sm:py-6">
             {average !== null && (
               <p className="flex flex-wrap items-baseline gap-x-3 gap-y-1 text-ink" data-testid="average-gap">
-                <span className="text-sm text-muted">Across {runs.length} markets, the average gap is</span>
+                <span className="text-sm text-muted">Across {runs.length} markets, the panel and the market differ by an average of</span>
                 <strong className="text-4xl font-bold tracking-tight tabular-nums">{average} points</strong>
               </p>
             )}

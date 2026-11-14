@@ -20,8 +20,17 @@ export function Dumbbell({ market, panel, size = "md" }: Props) {
   const lo = Math.min(market, panel);
   const hi = Math.max(market, panel);
   const dot = size === "lg" ? "size-5" : "size-[18px]";
-  // When the two dots nearly coincide, draw the ring hollow on top so both stay visible.
+  // The panel dot is drawn over the ring so it is never hidden. When the two nearly coincide,
+  // the ring is drawn hollow on top instead, so both stay visible.
   const overlap = hi - lo <= 2;
+  const ring = (
+    <span
+      className={`absolute top-1/2 ${dot} -translate-x-1/2 -translate-y-1/2 rounded-full border-[3px] border-ink ${
+        overlap ? "scale-125 bg-transparent" : "bg-card"
+      }`}
+      style={{ left: `${market}%` }}
+    />
+  );
   return (
     <div
       role="img"
@@ -33,7 +42,7 @@ export function Dumbbell({ market, panel, size = "md" }: Props) {
       </span>
       <div className={`relative flex-1 ${size === "lg" ? "h-20" : "h-[4.5rem]"}`}>
         <Label at={market} className="top-0 text-ink">
-          Market <span data-testid="market-percent">{market}%</span>
+          Kalshi <span data-testid="market-percent">{market}%</span>
         </Label>
         <div className="absolute inset-x-0 top-1/2 h-0.5 -translate-y-1/2 rounded-full bg-track" />
         <div className="absolute left-1/2 top-1/2 h-2.5 w-px -translate-y-1/2 bg-track" />
@@ -41,16 +50,12 @@ export function Dumbbell({ market, panel, size = "md" }: Props) {
           className={`absolute top-1/2 -translate-y-1/2 rounded-full bg-panel-soft ${size === "lg" ? "h-2.5" : "h-2"}`}
           style={{ left: `${lo}%`, width: `${hi - lo}%` }}
         />
+        {!overlap && ring}
         <span
           className={`absolute top-1/2 ${dot} -translate-x-1/2 -translate-y-1/2 rounded-full bg-panel ring-2 ring-card`}
           style={{ left: `${panel}%` }}
         />
-        <span
-          className={`absolute top-1/2 ${dot} -translate-x-1/2 -translate-y-1/2 rounded-full border-[3px] border-ink ${
-            overlap ? "scale-125 bg-transparent" : "bg-card"
-          }`}
-          style={{ left: `${market}%` }}
-        />
+        {overlap && ring}
         <Label at={panel} className="bottom-0 text-panel">
           AI panel <span data-testid="segment-percent">{panel}%</span>
         </Label>
