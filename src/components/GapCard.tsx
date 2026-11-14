@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { Dumbbell } from "@/components/Dumbbell";
 import { describeGap, formatGap, gapPoints, roundPercent } from "@/lib/gap";
 import { formatTime } from "@/lib/format";
 import type { MarketPrice } from "@/lib/kalshi";
@@ -16,63 +17,93 @@ export function priceNote(price: MarketPrice): string {
   return parts.join(" · ");
 }
 
+function SegmentLabel({ run }: { run: Run }) {
+  return (
+    <span className="inline-flex flex-wrap items-center gap-2 text-sm text-muted" data-testid="segment-label">
+      {run.segment.label}
+      <span className="whitespace-nowrap rounded bg-chip px-1.5 py-0.5 text-xs font-semibold text-panel">AI panel</span>
+    </span>
+  );
+}
+
+function Gap({ gap, label, large = false }: { gap: number; label: string; large?: boolean }) {
+  return (
+    <div>
+      <p
+        className={`font-bold leading-none tracking-tight tabular-nums ${gap === 0 ? "text-ink" : "text-panel"} ${
+          large ? "text-7xl sm:text-8xl" : "text-5xl lg:text-6xl"
+        }`}
+        data-testid="gap-value"
+      >
+        {formatGap(gap)}
+        <span className={`ml-1 font-semibold tracking-normal text-muted ${large ? "text-2xl" : "text-lg"}`}>
+          {Math.abs(gap) === 1 ? "pt" : "pts"}
+        </span>
+      </p>
+      <p className="mt-2 text-sm text-muted" data-testid="gap-phrase">
+        {describeGap(gap, label)}
+      </p>
+    </div>
+  );
+}
+
 export function GapCard({ run, price, linked = true }: Props) {
   const market = roundPercent(price.yesPercent);
   const segment = roundPercent(run.yesShare);
   const gap = gapPoints(run.yesShare, price.yesPercent);
 
-  const body = (
-    <>
-      <p className="text-lg font-medium leading-snug text-ink">{run.question}</p>
-      <div className="mt-5 grid grid-cols-1 gap-5 sm:grid-cols-3 sm:items-end">
-        <div>
-          <p className="text-sm font-medium text-muted">Kalshi market says Yes</p>
-          <p className="text-5xl font-semibold tabular-nums text-ink" data-testid="market-percent">
-            {market}%
-          </p>
-          <p className="mt-1 text-sm text-muted" data-testid="price-source">
-            {priceNote(price)}
-          </p>
+  if (!linked) {
+    return (
+      <section className="grid grid-cols-1 gap-8 lg:grid-cols-[minmax(0,1fr)_auto] lg:items-end lg:gap-16">
+        <div className="min-w-0">
+          <SegmentLabel run={run} />
+          <h1 className="mt-3 text-3xl font-semibold leading-[1.1] tracking-tight text-ink sm:text-5xl">
+            {run.question}
+          </h1>
+          <div className="mt-6 max-w-2xl">
+            <Dumbbell market={market} panel={segment} size="lg" />
+          </div>
         </div>
-        <div>
-          <p className="text-sm font-medium text-muted" data-testid="segment-label">
-            {run.segment.label} · <span className="whitespace-nowrap rounded bg-chip px-1.5 py-0.5 text-xs">AI panel</span>
-          </p>
-          <p className="text-5xl font-semibold tabular-nums text-ink" data-testid="segment-percent">
-            {segment}%
+        <div className="lg:text-right">
+          <Gap gap={gap} label={run.segment.label} large />
+          <p className="mt-3 text-sm text-muted" data-testid="price-source">
+            {priceNote(price)}
           </p>
           <p className="mt-1 text-sm text-muted">
             {run.panelSize} personas · {run.segment.place}
           </p>
         </div>
-        <div className="sm:text-right">
-          <p className="text-sm font-medium text-muted">Gap</p>
-          <p
-            className={`text-6xl font-bold tabular-nums sm:text-7xl ${gap < 0 ? "text-down" : gap > 0 ? "text-up" : "text-ink"}`}
-            data-testid="gap-value"
-          >
-            {formatGap(gap)}
-            <span className="ml-1 text-2xl font-semibold">{Math.abs(gap) === 1 ? "pt" : "pts"}</span>
-          </p>
-          <p className="mt-1 text-sm text-ink" data-testid="gap-phrase">
-            {describeGap(gap, run.segment.label)}
-          </p>
-        </div>
-      </div>
-    </>
-  );
-
-  if (!linked) {
-    return <section className="rounded-2xl border border-line bg-card p-5 sm:p-7">{body}</section>;
+      </section>
+    );
   }
+
   return (
     <Link
       href={`/m/${encodeURIComponent(run.ticker)}`}
-      className="block rounded-2xl border border-line bg-card p-5 shadow-sm transition hover:border-ink focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ink sm:p-7"
+      className="group block rounded-xl border border-line bg-card p-5 transition-colors hover:border-ink focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ink sm:p-6 lg:px-8"
       data-testid="gap-card"
     >
-      {body}
-      <p className="mt-5 text-sm font-medium text-accent">See who was asked and what they said →</p>
+      <div className="grid grid-cols-1 gap-5 lg:grid-cols-[minmax(0,20rem)_minmax(0,1fr)_14rem] lg:items-center lg:gap-10">
+        <div className="min-w-0">
+          <p className="truncate font-mono text-xs text-muted">{run.ticker}</p>
+          <p className="mt-1.5 text-lg font-semibold leading-snug text-ink">{run.question}</p>
+          <p className="mt-2">
+            <SegmentLabel run={run} />
+          </p>
+        </div>
+        <div className="order-last min-w-0 lg:order-none">
+          <Dumbbell market={market} panel={segment} />
+          <p className="mt-1 text-xs text-muted" data-testid="price-source">
+            {priceNote(price)}
+          </p>
+        </div>
+        <div className="lg:text-right">
+          <Gap gap={gap} label={run.segment.label} />
+        </div>
+      </div>
+      <p className="mt-3 text-sm font-medium text-ink underline-offset-4 group-hover:underline lg:text-right">
+        Who was asked and what they said →
+      </p>
     </Link>
   );
 }
