@@ -4,6 +4,15 @@
 
 Markets show what is priced in. They don't show what the people living the outcome expect. Street vs. Segment puts a live [Kalshi](https://kalshi.com) prediction-market price next to a [Flashpoint.AI](https://flashpoint.ai) panel of the people closest to the outcome, and shows the gap in percentage points.
 
+Kalshi lists 945 economics market series (its public API, November 14, 2026), each priced only by the people who trade it. Across our first 3 markets, the panel and the market disagree by an average of 17 points.
+
+| | |
+|---|---|
+| ![Home page with three gap cards](docs/screenshots/1-home.jpg) | ![Gas market detail: who was asked and what we asked](docs/screenshots/2-gas-detail.jpg) |
+| **Home.** Each card: Kalshi's Yes price, the panel's Yes share, and the gap. | **Detail.** The Census profile, the three questions and the answer splits. |
+| ![Quotes from the gas panel](docs/screenshots/3-gas-quotes.jpg) | ![The home page on a phone](docs/screenshots/4-phone.jpg) |
+| **In their words.** Five verbatim persona answers, with the full disclosure. | **Phone.** The same cards at 375 px. |
+
 Built at Hack the Unreachable (Flashpoint.AI), November 14, 2026, for the Investment Alpha track: "Find the gap between what's priced in and what key segments privately believe".
 
 ## How it works
@@ -19,9 +28,13 @@ The segment answers come from 100 Flashpoint synthetic personas per market, not 
 
 ## Run it
 
+Needs Node 26 (see `.node-version`). No API keys: Kalshi's public data needs no account, and the research runs are already saved in `data/runs/`.
+
 ```bash
 npm ci
 npm run dev
 ```
 
-`./check` runs the secret scan, the feature map, lint, types, unit and property tests, the build and the browser tests.
+The app opens on http://localhost:3000 (set `PORT` to change it).
+
+`./check` also needs [gitleaks](https://github.com/gitleaks/gitleaks) and Playwright's Chromium (`npx playwright install chromium`). It runs the secret scan, the feature map, lint, types, unit and property tests, the build and the browser tests.

@@ -16,11 +16,12 @@ export default async function Home() {
     <main className="mx-auto w-full max-w-5xl px-4 py-10 sm:px-6 sm:py-14">
       <p className="text-sm font-semibold uppercase tracking-wider text-accent">Street vs. Segment</p>
       <h1 className="mt-3 text-3xl font-semibold leading-tight text-ink sm:text-5xl">
-        The market prices one thing. The people living it expect another.
+        The market prices one thing. An AI panel of the people living it expects another.
       </h1>
       <p className="mt-4 max-w-3xl text-lg text-muted">
-        Each card puts a live Kalshi prediction-market price next to a Flashpoint.AI panel of the
-        people closest to the outcome, and shows the gap in percentage points.
+        Kalshi lists 945 economics market series, each priced only by the people who trade it. Each
+        card puts a live Kalshi price next to a Flashpoint.AI synthetic panel of 100 personas modeled
+        on the people closest to the outcome, and shows the gap in percentage points.
       </p>
 
       {runs.length === 0 ? (

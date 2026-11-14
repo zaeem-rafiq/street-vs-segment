@@ -30,7 +30,7 @@ export function GapCard({ run, price, linked = true }: Props) {
           <p className="text-5xl font-semibold tabular-nums text-ink" data-testid="market-percent">
             {market}%
           </p>
-          <p className="mt-1 text-xs text-muted" data-testid="price-source">
+          <p className="mt-1 text-sm text-muted" data-testid="price-source">
             {priceNote(price)}
           </p>
         </div>
@@ -41,7 +41,7 @@ export function GapCard({ run, price, linked = true }: Props) {
           <p className="text-5xl font-semibold tabular-nums text-ink" data-testid="segment-percent">
             {segment}%
           </p>
-          <p className="mt-1 text-xs text-muted">
+          <p className="mt-1 text-sm text-muted">
             {run.panelSize} personas · {run.segment.place}
           </p>
         </div>
@@ -52,7 +52,7 @@ export function GapCard({ run, price, linked = true }: Props) {
             data-testid="gap-value"
           >
             {formatGap(gap)}
-            <span className="ml-1 text-2xl font-semibold">pts</span>
+            <span className="ml-1 text-2xl font-semibold">{Math.abs(gap) === 1 ? "pt" : "pts"}</span>
           </p>
           <p className="mt-1 text-sm text-ink" data-testid="gap-phrase">
             {describeGap(gap, run.segment.label)}
