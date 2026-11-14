@@ -29,8 +29,9 @@ export default async function MarketPage({ params }: PageProps<"/m/[ticker]">) {
         <section className="rounded-2xl border border-line bg-card p-5" data-testid="panel-profile">
           <h2 className="text-lg font-semibold text-ink">Who was asked</h2>
           <p className="mt-1 text-sm text-muted">
-            {run.panelSize} AI personas matched to {run.segment.place}&apos;s Census profile
-            {typeof run.fitScore === "number" ? ` · Flashpoint Fit Score ${run.fitScore}` : ""}
+            {run.panelSize} AI personas. The Census profile below describes the real population of{" "}
+            {run.segment.place}; only the panel&apos;s gender mix was matched to it.
+            {typeof run.fitScore === "number" ? ` Flashpoint Fit Score ${run.fitScore}.` : ""}
           </p>
           <dl className="mt-4 space-y-2">
             {run.profile.map((stat) => (

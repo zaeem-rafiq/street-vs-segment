@@ -10,12 +10,12 @@ Built at Hack the Unreachable (Flashpoint.AI), November 14, 2026, for the Invest
 
 1. **Price.** The app reads the market's Yes price and last trade from Kalshi's public API on every page load (read-only; nothing trades).
 2. **Segment.** Claude picks the group whose lives decide the outcome (renters for rent, shoppers for grocery prices) and the place.
-3. **Research.** Over Flashpoint's MCP server, Claude calls `demographics` for the place's Census profile, `tool_survey` to build and check a three-question survey, and `panel create_and_run` to run a synthetic panel matched to that profile. Each run is saved in `data/runs/`, and `docs/research-runbook.md` records exactly what was asked.
+3. **Research.** Over Flashpoint's MCP server, Claude calls `demographics` for the place's Census profile, `tool_survey` to build and check a three-question survey, and `panel create_and_run` to run a 100-persona synthetic panel with that profile as context. Each run is saved in `data/runs/`, and `docs/research-runbook.md` records exactly what was asked.
 4. **Gap.** Both percentages are rounded to whole points and subtracted, so the number on the card always matches the two beside it.
 
 ## Limits, as scope choices
 
-The segment answers come from Flashpoint synthetic personas matched to Census data, not live respondents. Flashpoint can recruit real people (Prolific, Dynata, Cint) with one call; this build leaves that out for budget. Thin Kalshi books can move a price, so each card shows the last trade time and the bid-ask spread.
+The segment answers come from 100 Flashpoint synthetic personas per market, not live respondents. Only their gender mix is matched to Census data, Flashpoint returned no fit score, and the five quotes per market are verbatim answers chosen from 100. Flashpoint can recruit real people (Prolific, Dynata, Cint) with one call; this build leaves that out for budget. Thin Kalshi books can move a price, so each card shows the last trade time and the bid-ask spread.
 
 ## Run it
 

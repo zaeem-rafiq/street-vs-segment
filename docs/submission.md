@@ -6,11 +6,11 @@ The event asks for a public GitHub repository and a post on LinkedIn or X. The o
 
 Live: https://street-vs-segment.onrender.com
 
-Kalshi says [56]% that New York rents rise more than 4% this year. A Flashpoint panel of New York renters says [30]%. That [26]-point gap is what Street vs. Segment finds.
+Kalshi gives US gas above $3.70 by November 30 a [34]% chance. A Flashpoint panel of 100 US drivers says [59]%. That [25]-point gap is what Street vs. Segment finds.
 
-Built today at Hack the Unreachable (Flashpoint.AI). For any Kalshi economics market, Claude works out who lives the outcome, Flashpoint builds a Census-matched panel of them and asks, and the page puts their answer next to the live price. Across [3] markets the gap averaged [N] points.
+Built today at Hack the Unreachable (Flashpoint.AI). For any Kalshi economics market, Claude works out who lives the outcome, Flashpoint runs a 100-persona panel of them and asks, and the page puts their answer next to the live price. Across [3] markets the gap averaged [N] points.
 
-The panels are Flashpoint's synthetic personas, matched to each place's Census profile. Real respondents are one Flashpoint call away.
+The panels are Flashpoint synthetic personas, so the numbers are directional, not a poll. Real respondents are one Flashpoint call away.
 
 Code: https://github.com/zaeem-rafiq/street-vs-segment
 

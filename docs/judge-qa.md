@@ -10,7 +10,7 @@ If the people living an outcome expect something different from the market, eith
 Everything on the right side of the card. Flashpoint gives us the Census profile of the segment, writes and validates the survey, and runs the panel. Without it there is a price and nothing to compare it with.
 
 **What's real and what's simulated?**
-The market prices are live from Kalshi. The segment answers come from Flashpoint synthetic panels: AI personas matched to the place's Census profile, not live people. The page says so on every card. Flashpoint can recruit real respondents through Prolific with one call; we left that out for budget.
+The market prices are live from Kalshi. The segment answers come from Flashpoint synthetic panels: 100 AI personas per market, not live people. Only their gender mix is matched to Census data, and Flashpoint returned no fit score, so we treat the numbers as directional. The quotes are verbatim, five picked from 100. Each card is labeled "AI panel", and the footer and detail pages say the rest. Flashpoint can recruit real respondents through Prolific with one call; we left that out for budget.
 
 **What's next?**
 Run the same survey on real respondents for one market and compare it with the synthetic panel, so we know how far to trust the personas. Then track each gap until the market resolves, to see who was right.
