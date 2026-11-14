@@ -9,8 +9,10 @@ type Props = { run: Run; price: MarketPrice; linked?: boolean };
 export function priceNote(price: MarketPrice): string {
   const time = formatTime(price.lastTradeTime);
   if (price.source === "saved") return `Saved price${time ? `, ${time}` : ""}`;
-  const parts = [time ? `Last trade ${time}` : "Live price"];
-  if (price.spreadPoints !== null) parts.push(`bid-ask spread ${price.spreadPoints} pts`);
+  const parts = [time ? `Last trade ${time}` : "Last trade time unavailable"];
+  if (price.spreadPoints !== null) {
+    parts.push(`bid-ask spread ${price.spreadPoints} ${price.spreadPoints === 1 ? "pt" : "pts"}`);
+  }
   return parts.join(" · ");
 }
 
@@ -34,7 +36,7 @@ export function GapCard({ run, price, linked = true }: Props) {
         </div>
         <div>
           <p className="text-sm font-medium text-muted" data-testid="segment-label">
-            {run.segment.label} · <span className="rounded bg-chip px-1.5 py-0.5 text-xs">AI panel</span>
+            {run.segment.label} · <span className="whitespace-nowrap rounded bg-chip px-1.5 py-0.5 text-xs">AI panel</span>
           </p>
           <p className="text-5xl font-semibold tabular-nums text-ink" data-testid="segment-percent">
             {segment}%
