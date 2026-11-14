@@ -111,5 +111,61 @@
     "surveyId": "9188a64e-f3c0-43f5-8a7a-33ecc81005a3",
     "panelId": "01a1db29-2293-7c27-8512-f2066580424f"
   },
-  "ranAt": "2026-11-14T17:44:46Z"
+  "ranAt": "2026-11-14T17:44:46Z",
+  "knownAnswerCheck": {
+    "question": "Were grocery prices in the US more than 2.5% higher in September 2026 than in September 2025, as measured by the government's CPI Food at home index?",
+    "correctAnswer": "No",
+    "fact": "The Bureau of Labor Statistics CPI Food at home index (not seasonally adjusted) was 321.758 in September 2026 and 316.042 in September 2025, a rise of 1.8%, which is not more than 2.5%.",
+    "sourceName": "U.S. Bureau of Labor Statistics, CPI-U Food at home, not seasonally adjusted (series CUUR0000SAF11)",
+    "sourceUrl": "https://data.bls.gov/timeseries/CUUR0000SAF11",
+    "panelYesShare": 67,
+    "surveyId": "77bee116-69ae-41af-b5df-2bc4d33e7557"
+  },
+  "breakdowns": [
+    {
+      "dimension": "age",
+      "groups": [
+        {
+          "label": "Under 35",
+          "n": 29,
+          "yesShare": 79.3
+        },
+        {
+          "label": "35 to 54",
+          "n": 42,
+          "yesShare": 47.6
+        },
+        {
+          "label": "55 and over",
+          "n": 29,
+          "yesShare": 69.0
+        }
+      ]
+    },
+    {
+      "dimension": "region",
+      "groups": [
+        {
+          "label": "Northeast",
+          "n": 17,
+          "yesShare": 58.8
+        },
+        {
+          "label": "Midwest",
+          "n": 18,
+          "yesShare": 72.2
+        },
+        {
+          "label": "South",
+          "n": 38,
+          "yesShare": 55.3
+        },
+        {
+          "label": "West",
+          "n": 27,
+          "yesShare": 70.4
+        }
+      ]
+    }
+  ]
 }

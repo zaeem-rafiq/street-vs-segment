@@ -2,33 +2,133 @@
   "fixture": true,
   "ticker": "KXNYCRENTSY-26-T4",
   "question": "Will New York City rent grow above 4% in December 2026?",
-  "segment": { "label": "Fixture renters", "place": "New York City" },
-  "marketAtRun": { "yesPercent": 56, "time": "2026-11-14T17:00:00Z" },
+  "segment": {
+    "label": "Fixture renters",
+    "place": "New York City"
+  },
+  "marketAtRun": {
+    "yesPercent": 56,
+    "time": "2026-11-14T17:00:00Z"
+  },
   "profile": [
-    { "label": "Fixture stat A", "value": "1" },
-    { "label": "Fixture stat B", "value": "2" }
+    {
+      "label": "Fixture stat A",
+      "value": "1"
+    },
+    {
+      "label": "Fixture stat B",
+      "value": "2"
+    }
   ],
   "questions": [
     {
       "text": "Fixture yes/no question",
       "kind": "yes_no",
       "answers": [
-        { "option": "Yes", "percent": 30 },
-        { "option": "No", "percent": 70 }
+        {
+          "option": "Yes",
+          "percent": 30
+        },
+        {
+          "option": "No",
+          "percent": 70
+        }
       ]
     },
-    { "text": "Fixture behavior question", "kind": "behavior" },
-    { "text": "Fixture open question", "kind": "open" }
+    {
+      "text": "Fixture behavior question",
+      "kind": "behavior"
+    },
+    {
+      "text": "Fixture open question",
+      "kind": "open"
+    }
   ],
   "yesShare": 30,
   "behaviorSummary": "Fixture behavior summary",
   "quotes": [
-    { "text": "Fixture quote one", "persona": "Fixture persona 1" },
-    { "text": "Fixture quote two", "persona": "Fixture persona 2" },
-    { "text": "Fixture quote three", "persona": "Fixture persona 3" }
+    {
+      "text": "Fixture quote one",
+      "persona": "Fixture persona 1"
+    },
+    {
+      "text": "Fixture quote two",
+      "persona": "Fixture persona 2"
+    },
+    {
+      "text": "Fixture quote three",
+      "persona": "Fixture persona 3"
+    }
   ],
   "panelSize": 10,
   "fitScore": null,
-  "flashpoint": { "surveyId": "fixture-survey" },
-  "ranAt": "2026-11-14T17:00:00Z"
+  "flashpoint": {
+    "surveyId": "fixture-survey"
+  },
+  "ranAt": "2026-11-14T17:00:00Z",
+  "knownAnswerCheck": {
+    "question": "Fixture known-answer question",
+    "correctAnswer": "No",
+    "fact": "Fixture fact",
+    "sourceName": "Fixture source",
+    "sourceUrl": "https://example.com/fixture",
+    "panelYesShare": 18,
+    "surveyId": "fixture-survey-check"
+  },
+  "estimate": {
+    "question": "Fixture estimate question",
+    "unit": "percent",
+    "values": [
+      2,
+      3,
+      3.5,
+      4,
+      4.5,
+      5,
+      5.5,
+      6,
+      3.2,
+      4.1,
+      4.8,
+      2.9
+    ],
+    "surveyId": "fixture-survey-estimate"
+  },
+  "breakdowns": [
+    {
+      "dimension": "age",
+      "groups": [
+        {
+          "label": "Under 35",
+          "n": 30,
+          "yesShare": 40
+        },
+        {
+          "label": "35 to 54",
+          "n": 40,
+          "yesShare": 30
+        },
+        {
+          "label": "55 and over",
+          "n": 30,
+          "yesShare": 20
+        }
+      ]
+    },
+    {
+      "dimension": "region",
+      "groups": [
+        {
+          "label": "Northeast",
+          "n": 100,
+          "yesShare": 30
+        },
+        {
+          "label": "Other",
+          "n": 1,
+          "yesShare": 0
+        }
+      ]
+    }
+  ]
 }
