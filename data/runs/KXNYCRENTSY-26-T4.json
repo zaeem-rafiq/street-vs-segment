@@ -115,5 +115,36 @@
     "surveyId": "1ac0e2f9-d257-4551-97ee-0894f223175f",
     "panelId": "01a1db29-2e99-729e-97fd-3d0ffd28fcf3"
   },
-  "ranAt": "2026-11-14T17:44:48Z"
+  "ranAt": "2026-11-14T17:44:48Z",
+  "knownAnswerCheck": {
+    "question": "Was rent in New York City more than 4% higher in October 2026 than in October 2025, according to the StreetEasy Rent Index (all bedrooms)?",
+    "correctAnswer": "Yes",
+    "fact": "The StreetEasy Rent Index for New York City was $4,014 in October 2026 and $3,793 in October 2025, a rise of 5.8%, which is more than 4%.",
+    "sourceName": "StreetEasy Rent Index, New York City, all bedrooms (StreetEasy data dashboard)",
+    "sourceUrl": "https://streeteasy.com/blog/data-dashboard",
+    "panelYesShare": 59,
+    "surveyId": "35490afa-2eb3-451e-a8b9-941ad0c520f9"
+  },
+  "breakdowns": [
+    {
+      "dimension": "age",
+      "groups": [
+        {
+          "label": "Under 35",
+          "n": 32,
+          "yesShare": 81.2
+        },
+        {
+          "label": "35 to 54",
+          "n": 41,
+          "yesShare": 51.2
+        },
+        {
+          "label": "55 and over",
+          "n": 27,
+          "yesShare": 37.0
+        }
+      ]
+    }
+  ]
 }
