@@ -42,6 +42,40 @@ export const runSchema = z.object({
     panelId: z.string().optional(),
   }),
   ranAt: z.string().min(1),
+  // #1 Known-answer check: the same panel asked a yes/no question whose answer is already a
+  // public fact. Shows how far the panel's Yes share is from the truth (0 or 100).
+  knownAnswerCheck: z
+    .object({
+      question: z.string().min(1),
+      correctAnswer: z.enum(["Yes", "No"]),
+      fact: z.string().min(1),
+      sourceName: z.string().min(1),
+      sourceUrl: z.string().url(),
+      panelYesShare: percent,
+      surveyId: z.string().min(1),
+    })
+    .optional(),
+  // #2 The panel's own number for the market's quantity (for example the Nov 30 gas average),
+  // one value per persona, so the page can compare the panel's odds with every Kalshi strike.
+  estimate: z
+    .object({
+      question: z.string().min(1),
+      unit: z.string().min(1),
+      values: z.array(z.number()).min(10),
+      surveyId: z.string().min(1),
+    })
+    .optional(),
+  // #3 Who drives the gap: the Yes share split by a persona attribute.
+  breakdowns: z
+    .array(
+      z.object({
+        dimension: z.enum(["age", "region", "gender"]),
+        groups: z
+          .array(z.object({ label: z.string().min(1), n: z.number().int().positive(), yesShare: percent }))
+          .min(2),
+      }),
+    )
+    .optional(),
   // Test fixtures set this so they can never pass as real research.
   fixture: z.boolean().optional(),
 });
