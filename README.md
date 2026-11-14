@@ -28,9 +28,13 @@ The segment answers come from 100 Flashpoint synthetic personas per market, not 
 
 ## Run it
 
+Needs Node 26 (see `.node-version`). No API keys: Kalshi's public data needs no account, and the research runs are already saved in `data/runs/`.
+
 ```bash
 npm ci
 npm run dev
 ```
 
-`./check` runs the secret scan, the feature map, lint, types, unit and property tests, the build and the browser tests.
+The app opens on http://localhost:3000 (set `PORT` to change it).
+
+`./check` also needs [gitleaks](https://github.com/gitleaks/gitleaks) and Playwright's Chromium (`npx playwright install chromium`). It runs the secret scan, the feature map, lint, types, unit and property tests, the build and the browser tests.

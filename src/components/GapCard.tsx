@@ -52,7 +52,7 @@ export function GapCard({ run, price, linked = true }: Props) {
             data-testid="gap-value"
           >
             {formatGap(gap)}
-            <span className="ml-1 text-2xl font-semibold">pts</span>
+            <span className="ml-1 text-2xl font-semibold">{Math.abs(gap) === 1 ? "pt" : "pts"}</span>
           </p>
           <p className="mt-1 text-sm text-ink" data-testid="gap-phrase">
             {describeGap(gap, run.segment.label)}

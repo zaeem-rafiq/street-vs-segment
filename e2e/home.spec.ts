@@ -13,7 +13,7 @@ test("shows one gap card per saved run with market, segment and signed gap", asy
     await expect(card.getByTestId("market-percent")).toHaveText(/^\d{1,3}%$/);
     await expect(card.getByTestId("segment-percent")).toHaveText(/^\d{1,3}%$/);
     await expect(card.getByTestId("segment-label")).toContainText("AI panel");
-    await expect(card.getByTestId("gap-value")).toHaveText(/^([+−]\d{1,3}|0)\s*pts$/);
+    await expect(card.getByTestId("gap-value")).toHaveText(/^([+−]\d{1,3}|0)\s*pts?$/);
     await expect(card.getByTestId("gap-phrase")).toContainText("the market");
   }
   await expect(page.getByTestId("average-gap")).toContainText(`Across ${fixtureCount} markets`);
