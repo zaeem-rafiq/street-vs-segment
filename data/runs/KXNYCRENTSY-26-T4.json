@@ -1,0 +1,119 @@
+{
+  "ticker": "KXNYCRENTSY-26-T4",
+  "question": "Will New York City rent grow above 4% in December 2026?",
+  "segment": {
+    "label": "NYC renters",
+    "place": "New York City"
+  },
+  "marketAtRun": {
+    "yesPercent": 56,
+    "time": "2026-11-14T18:01:14Z"
+  },
+  "profile": [
+    {
+      "label": "NYC population (Census ACS 2022)",
+      "value": "8.6 million"
+    },
+    {
+      "label": "Median age",
+      "value": "37.5"
+    },
+    {
+      "label": "Median household income",
+      "value": "$76,607"
+    },
+    {
+      "label": "Households earning under $50,000",
+      "value": "35.7%"
+    },
+    {
+      "label": "Adults 25+ with a bachelor's degree or higher",
+      "value": "40.2%"
+    },
+    {
+      "label": "Hispanic or Latino",
+      "value": "29.0%"
+    }
+  ],
+  "questions": [
+    {
+      "text": "Will rent in New York City be more than 4% higher in December 2026 than in December 2025, according to the StreetEasy Rent Index (all bedrooms)?",
+      "kind": "yes_no",
+      "answers": [
+        {
+          "option": "Yes",
+          "percent": 57
+        },
+        {
+          "option": "No",
+          "percent": 43
+        }
+      ]
+    },
+    {
+      "text": "How did your rent change the last time your lease renewed?",
+      "kind": "behavior",
+      "answers": [
+        {
+          "option": "It went down",
+          "percent": 4
+        },
+        {
+          "option": "It stayed the same",
+          "percent": 15
+        },
+        {
+          "option": "It went up by less than 3%",
+          "percent": 20
+        },
+        {
+          "option": "It went up by 3% to 6%",
+          "percent": 38
+        },
+        {
+          "option": "It went up by more than 6%",
+          "percent": 22
+        },
+        {
+          "option": "I haven't renewed a lease yet",
+          "percent": 1
+        }
+      ]
+    },
+    {
+      "text": "In one sentence, why?",
+      "kind": "open"
+    }
+  ],
+  "yesShare": 57,
+  "behaviorSummary": "60% say their last renewal raised rent by 3% or more (38% by 3% to 6%, 22% by more than 6%). 20% saw a rise under 3%, 19% saw rent stay the same or go down, and 1% have not renewed yet.",
+  "quotes": [
+    {
+      "text": "My rent already jumped 8% last renewal because the landlord said it was to match nearby listings, so I don't see NYC slowing down enough to stay under 4% by next December.",
+      "persona": "Restaurant shift manager, 34"
+    },
+    {
+      "text": "My last renewal went up 7%, and with how tight the rental market still feels in Brooklyn, I don't think prices will cool off enough to stay under a 4% increase by then.",
+      "persona": "Public school teacher, 27"
+    },
+    {
+      "text": "My last renewal went up 5%, and with insurance, maintenance, and everything else climbing, I don't see NYC rents easing enough to stay under 4% by December 2026.",
+      "persona": "Registered nurse, 52"
+    },
+    {
+      "text": "I don't expect rents to rise much more than that because my own regulated renewal was only a small increase, and with tenants already stretched, I think the market will stay fairly restrained.",
+      "persona": "Retired social worker, 66"
+    },
+    {
+      "text": "Inventory feels more balanced and landlords are already giving concessions, so I don't see rents accelerating enough to clear 4%.",
+      "persona": "Real estate analyst, 30"
+    }
+  ],
+  "panelSize": 100,
+  "fitScore": null,
+  "flashpoint": {
+    "surveyId": "1ac0e2f9-d257-4551-97ee-0894f223175f",
+    "panelId": "01a1db29-2e99-729e-97fd-3d0ffd28fcf3"
+  },
+  "ranAt": "2026-11-14T17:44:48Z"
+}
