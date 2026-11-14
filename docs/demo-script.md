@@ -1,18 +1,19 @@
 # Demo script (2 minutes)
 
-Read the numbers off the live page just before presenting. Kalshi prices move. The numbers below are from the 12:01 PM CT runs.
+Read the numbers off the live page just before presenting. Kalshi prices move. The numbers below are from 2:10 PM CT.
 
-| Time | Say | Screen (real product?) |
+| Time | Say | Screen |
 |---|---|---|
-| 0:00 | "Kalshi lists 945 economics markets. Every price comes only from the people who trade it, not the people who live it." | Home page, gap cards already showing (real) |
-| 0:05 | "Kalshi gives gas above $3.70 by November 30 a 34% chance. A Flashpoint panel of 100 US drivers says 59%. That's a 25-point gap, on a market that traded over 8,000 contracts today." | Gas card, big green +25 (real) |
-| 0:30 | "So we built Street vs. Segment. Pick a Kalshi economics market. Claude works out who lives that outcome and writes three questions. Flashpoint builds the survey, runs a 100-persona panel, and returns their answers. We put that next to the live price." | Click into the gas card: who was asked, the questions (real) |
-| 1:00 | "And here's why, in their words." Read one quote. | Answers panel with quotes (real) |
-| 1:10 | "It doesn't always find a gap. On New York rent, renters and the market agree within a point. On grocery inflation, shoppers are 26 points more worried than the market." | Back to home, rent and grocery cards (real) |
-| 1:35 | "The best signal sits with people no trader asks. Now an agent asks them before the market moves." | Home page, average line |
-| 1:50 | "These are AI personas, not a poll, so read the gaps as directional. Swapping in 100 real respondents is one Flashpoint call. We left it out for budget." | Footer disclosure (real) |
+| 0:00 | "Kalshi lists 945 economics markets. Every price comes only from the people who trade it, not the people who live it." | Home page |
+| 0:05 | "Kalshi gives gas above $3.70 on November 30 a 34% chance. A Flashpoint panel of 100 US drivers says 59%. That's the orange dot, 25 points from the market's ring." | Gas row |
+| 0:25 | "So we built Street vs. Segment. Pick a Kalshi economics market. Claude works out who lives that outcome, Flashpoint runs a 100-persona panel of them, and we put their answer next to the price." | Click into gas |
+| 0:45 | "We can also ask them for the number itself. The panel's median is about $4.07, so 73% of its estimates land above $3.70. The market says 34%. Here's every strike." | Strike ladder |
+| 1:00 | "And here's who drives it: the Northeast says 37%, the Midwest 67%." | Who drives the gap |
+| 1:10 | "Then we test our own panel. Two weeks ago gas was $4.15, so the answer to 'above $3.70?' was Yes. Only 24% of the panel said Yes. It misses known facts by 41 to 76 points across our three markets." | Known-answer check |
+| 1:35 | "So these gaps are leads to check, not trades. The next step is one Flashpoint call: swap in real respondents and see which side moves." | Home page |
+| 1:50 | "The best signal sits with people no trader asks. Now an agent can ask them, and tell you how much to trust the answer." | Home page |
 
 ## Before going on stage
 
-1. Open https://street-vs-segment.onrender.com about two minutes early. The free plan sleeps and can take up to a minute to wake.
-2. Read the three gaps and the average off the page and say those numbers.
+1. Open https://street-vs-segment.onrender.com about two minutes early. The free plan can take up to a minute to wake.
+2. Read the gaps, the median and the misses off the page and say those numbers.
