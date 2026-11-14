@@ -1,0 +1,34 @@
+{
+  "fixture": true,
+  "ticker": "KXNYCRENTSY-26-T4",
+  "question": "Will New York City rent grow above 4% in December 2026?",
+  "segment": { "label": "Fixture renters", "place": "New York City" },
+  "marketAtRun": { "yesPercent": 56, "time": "2026-11-14T17:00:00Z" },
+  "profile": [
+    { "label": "Fixture stat A", "value": "1" },
+    { "label": "Fixture stat B", "value": "2" }
+  ],
+  "questions": [
+    {
+      "text": "Fixture yes/no question",
+      "kind": "yes_no",
+      "answers": [
+        { "option": "Yes", "percent": 30 },
+        { "option": "No", "percent": 70 }
+      ]
+    },
+    { "text": "Fixture behavior question", "kind": "behavior" },
+    { "text": "Fixture open question", "kind": "open" }
+  ],
+  "yesShare": 30,
+  "behaviorSummary": "Fixture behavior summary",
+  "quotes": [
+    { "text": "Fixture quote one", "persona": "Fixture persona 1" },
+    { "text": "Fixture quote two", "persona": "Fixture persona 2" },
+    { "text": "Fixture quote three", "persona": "Fixture persona 3" }
+  ],
+  "panelSize": 10,
+  "fitScore": null,
+  "flashpoint": { "surveyId": "fixture-survey" },
+  "ranAt": "2026-11-14T17:00:00Z"
+}

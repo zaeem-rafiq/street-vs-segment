@@ -1,0 +1,20 @@
+{
+  "fixture": true,
+  "ticker": "FIXTURE-NOT-A-MARKET",
+  "question": "Fixture question for a market that does not exist on Kalshi",
+  "segment": { "label": "Fixture drivers", "place": "United States" },
+  "marketAtRun": { "yesPercent": 40, "time": "2026-11-14T17:00:00Z" },
+  "profile": [{ "label": "Fixture stat", "value": "3" }],
+  "questions": [{ "text": "Fixture yes/no question", "kind": "yes_no" }],
+  "yesShare": 65,
+  "behaviorSummary": "Fixture behavior summary",
+  "quotes": [
+    { "text": "Fixture quote four", "persona": "Fixture persona 4" },
+    { "text": "Fixture quote five", "persona": "Fixture persona 5" },
+    { "text": "Fixture quote six", "persona": "Fixture persona 6" }
+  ],
+  "panelSize": 10,
+  "fitScore": 0.8,
+  "flashpoint": { "surveyId": "fixture-survey-2" },
+  "ranAt": "2026-11-14T17:00:00Z"
+}

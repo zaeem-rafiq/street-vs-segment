@@ -1,0 +1,14 @@
+# Render blueprint: one free web service. RUNS_DIR is never set here, so the public
+# site only shows real runs from data/runs.
+services:
+  - type: web
+    name: street-vs-segment
+    runtime: node
+    plan: free
+    branch: main
+    buildCommand: npm ci && npm run build
+    startCommand: npm start
+    healthCheckPath: /
+    envVars:
+      - key: NEXT_TELEMETRY_DISABLED
+        value: "1"
