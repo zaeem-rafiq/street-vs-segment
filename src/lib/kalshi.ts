@@ -14,8 +14,13 @@ type KalshiMarket = {
 };
 
 const CACHE_MS = 60_000;
+// A failed read is remembered briefly, so a stalled or rate-limiting Kalshi costs one 4 second
+// wait per market per 15 seconds instead of one per page view. The saved price stays labeled.
+const FAILURE_CACHE_MS = 15_000;
 const TIMEOUT_MS = 4_000;
-const cache = new Map<string, { at: number; price: MarketPrice }>();
+const cache = new Map<string, { at: number; price: MarketPrice; ttl: number }>();
+// Requests already on their way, so visitors who arrive together share one pair of Kalshi calls.
+const inFlight = new Map<string, Promise<MarketPrice>>();
 
 function baseUrl(): string {
   return process.env.KALSHI_BASE_URL ?? "https://api.elections.kalshi.com/trade-api/v2";
@@ -52,13 +57,11 @@ async function getJson(url: string): Promise<unknown> {
   return response.json();
 }
 
-export async function fetchMarketPrice(
+// Never rejects: every failure comes back as the saved price.
+async function requestMarketPrice(
   ticker: string,
   saved: { yesPercent: number; time: string },
 ): Promise<MarketPrice> {
-  const hit = cache.get(ticker);
-  if (hit && Date.now() - hit.at < CACHE_MS) return hit.price;
-
   const savedPrice: MarketPrice = {
     yesPercent: saved.yesPercent,
     source: "saved",
@@ -77,19 +80,41 @@ export async function fetchMarketPrice(
     const { yesPercent, spreadPoints } = priceFromMarket(market);
     if (yesPercent === null) return savedPrice;
     const trades = (tradesBody as { trades?: { created_time?: string }[] } | null)?.trades;
-    const price: MarketPrice = {
+    return {
       yesPercent,
       source: "live",
       lastTradeTime: trades?.[0]?.created_time ?? null,
       spreadPoints,
     };
-    cache.set(ticker, { at: Date.now(), price });
-    return price;
   } catch {
     return savedPrice;
   }
 }
 
+export async function fetchMarketPrice(
+  ticker: string,
+  saved: { yesPercent: number; time: string },
+): Promise<MarketPrice> {
+  const hit = cache.get(ticker);
+  if (hit && Date.now() - hit.at < hit.ttl) return hit.price;
+
+  const pending = inFlight.get(ticker);
+  if (pending) return pending;
+
+  const request: Promise<MarketPrice> = requestMarketPrice(ticker, saved)
+    .then((price) => {
+      const ttl = price.source === "live" ? CACHE_MS : FAILURE_CACHE_MS;
+      cache.set(ticker, { at: Date.now(), price, ttl });
+      return price;
+    })
+    .finally(() => {
+      if (inFlight.get(ticker) === request) inFlight.delete(ticker);
+    });
+  inFlight.set(ticker, request);
+  return request;
+}
+
 export function clearPriceCache(): void {
   cache.clear();
+  inFlight.clear();
 }

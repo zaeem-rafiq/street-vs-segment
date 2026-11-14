@@ -32,7 +32,10 @@ describe("priceFromMarket", () => {
 
 describe("fetchMarketPrice", () => {
   beforeEach(() => clearPriceCache());
-  afterEach(() => vi.unstubAllGlobals());
+  afterEach(() => {
+    vi.unstubAllGlobals();
+    vi.useRealTimers();
+  });
 
   it("returns the live price and the last trade time", async () => {
     vi.stubGlobal(
@@ -71,5 +74,63 @@ describe("fetchMarketPrice", () => {
     const price = await fetchMarketPrice("ABC", saved);
     expect(price.source).toBe("live");
     expect(price.lastTradeTime).toBeNull();
+  });
+
+  it("remembers a failure for 15 seconds, still labeled as the saved price", async () => {
+    vi.useFakeTimers({ toFake: ["Date"] });
+    const fetchStub = vi.fn(async () => {
+      throw new Error("offline");
+    });
+    vi.stubGlobal("fetch", fetchStub);
+
+    const first = await fetchMarketPrice("ABC", saved);
+    const callsAfterFirst = fetchStub.mock.calls.length;
+    expect(first).toMatchObject({ source: "saved", yesPercent: 50, lastTradeTime: saved.time });
+
+    vi.setSystemTime(Date.now() + 14_000);
+    const second = await fetchMarketPrice("ABC", saved);
+    expect(second.source).toBe("saved");
+    expect(fetchStub.mock.calls.length).toBe(callsAfterFirst);
+
+    vi.setSystemTime(Date.now() + 2_000);
+    await fetchMarketPrice("ABC", saved);
+    expect(fetchStub.mock.calls.length).toBeGreaterThan(callsAfterFirst);
+  });
+
+  it("shares one pair of Kalshi calls between requests that arrive together", async () => {
+    const fetchStub = vi.fn(async (url: string) =>
+      url.includes("/trades")
+        ? jsonResponse({ trades: [{ created_time: "2026-11-12T10:00:00Z" }] })
+        : jsonResponse({ market: { last_price_dollars: "0.5600" } }),
+    );
+    vi.stubGlobal("fetch", fetchStub);
+
+    const [a, b, c] = await Promise.all([
+      fetchMarketPrice("ABC", saved),
+      fetchMarketPrice("ABC", saved),
+      fetchMarketPrice("ABC", saved),
+    ]);
+    expect(fetchStub).toHaveBeenCalledTimes(2);
+    expect(a).toBe(b);
+    expect(b).toBe(c);
+  });
+
+  it("keeps a live price for 60 seconds and then asks Kalshi again", async () => {
+    vi.useFakeTimers({ toFake: ["Date"] });
+    const fetchStub = vi.fn(async (url: string) =>
+      url.includes("/trades") ? jsonResponse({ trades: [] }) : jsonResponse({ market: { last_price_dollars: "0.5600" } }),
+    );
+    vi.stubGlobal("fetch", fetchStub);
+
+    await fetchMarketPrice("ABC", saved);
+    expect(fetchStub).toHaveBeenCalledTimes(2);
+
+    vi.setSystemTime(Date.now() + 59_000);
+    await fetchMarketPrice("ABC", saved);
+    expect(fetchStub).toHaveBeenCalledTimes(2);
+
+    vi.setSystemTime(Date.now() + 2_000);
+    await fetchMarketPrice("ABC", saved);
+    expect(fetchStub).toHaveBeenCalledTimes(4);
   });
 });

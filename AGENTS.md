@@ -6,7 +6,7 @@ A one-page web app that puts a live Kalshi prediction-market price next to a Fla
 
 - `src/lib/kalshi.ts` reads the market's Yes price (last trade, else bid-ask midpoint, else the saved price) and the last trade time from Kalshi's public API. Read-only; it never trades. `KALSHI_BASE_URL` overrides the host for tests.
 - `data/runs/<ticker>.json` holds one saved Flashpoint research run per market, validated by `src/lib/run-schema.ts`. Runs are made by Claude over Flashpoint's MCP server on the owner's signed-in account and saved by hand-off, never typed by hand. `docs/research-runbook.md` records what was asked.
-- `RUNS_DIR` points the app at another runs folder. Only the browser tests set it (to `e2e/fixtures`); the public site never does.
+- `RUNS_DIR` points the app at another runs folder. Only the browser tests set it (to `e2e/fixtures`); the public site never does. With no `RUNS_DIR`, `loadRuns()` also drops any run flagged `fixture`, so a fixture copied into `data/runs` stays off the public page (the data/runs unit test still fails on it).
 - `src/lib/gap.ts` rounds both percentages to whole points, then subtracts (segment minus market).
 
 ## Commands

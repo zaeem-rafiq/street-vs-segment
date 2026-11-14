@@ -29,8 +29,8 @@ export default async function MarketPage({ params }: PageProps<"/m/[ticker]">) {
         <section className="rounded-2xl border border-line bg-card p-5" data-testid="panel-profile">
           <h2 className="text-lg font-semibold text-ink">Who was asked</h2>
           <p className="mt-1 text-sm text-muted">
-            {run.panelSize} AI personas. The Census profile below describes the real population of{" "}
-            {run.segment.place}; only the panel&apos;s gender mix was matched to it.
+            {run.panelSize} AI personas. The Census profile below ({run.segment.place}) describes the
+            real population; only the panel&apos;s gender mix was matched to it.
             {typeof run.fitScore === "number" ? ` Flashpoint Fit Score ${run.fitScore}.` : ""}
           </p>
           <dl className="mt-4 space-y-2">
@@ -50,13 +50,20 @@ export default async function MarketPage({ params }: PageProps<"/m/[ticker]">) {
               <li key={question.text} className="text-sm">
                 <p className="text-xs font-semibold uppercase tracking-wide text-muted">{kindLabel[question.kind]}</p>
                 <p className="mt-1 text-ink">{question.text}</p>
+                {question.kind === "open" && !question.answers && (
+                  <p className="mt-1 text-muted">Read the answers under &ldquo;In their words&rdquo;.</p>
+                )}
                 {question.answers && (
                   <ul className="mt-2 space-y-1">
                     {question.answers.map((answer) => (
-                      <li key={answer.option} className="flex items-center gap-2">
-                        <span className="w-24 shrink-0 truncate text-muted">{answer.option}</span>
-                        <span className="h-2 rounded bg-accent" style={{ width: `${Math.max(2, answer.percent)}%` }} />
-                        <span className="tabular-nums text-ink">{Math.round(answer.percent)}%</span>
+                      <li key={answer.option}>
+                        <span className="block text-muted">{answer.option}</span>
+                        <span className="mt-0.5 flex items-center gap-2">
+                          <span className="h-2 flex-1">
+                            <span className="block h-2 rounded bg-accent" style={{ width: `${Math.max(2, answer.percent)}%` }} />
+                          </span>
+                          <span className="w-9 shrink-0 text-right tabular-nums text-ink">{Math.round(answer.percent)}%</span>
+                        </span>
                       </li>
                     ))}
                   </ul>
